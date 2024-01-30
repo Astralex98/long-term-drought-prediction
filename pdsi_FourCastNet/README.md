@@ -15,7 +15,7 @@ docker build . -t=<docker_image_name>
 Then please launch a container with necessary system configuration
 
 ```
-docker run --mount type=bind,source=/local_path/long-term-drought-prediction/,destination=/long-term-drought-prediction/ -p <port_in>:<port_out> --memory=64g --cpuset-cpus="0-7" --gpus '"device=0"'  -it --rm --name=<docker_container_name>  <docker_image_name>
+docker run --mount type=bind,source=/<local_path>/long-term-drought-prediction/,destination=/long-term-drought-prediction/ -p <port_in>:<port_out> --memory=64g --cpuset-cpus="0-7" --gpus '"device=0"'  -it --rm --name=<docker_container_name>  <docker_image_name>
 ```
 
 ## Preprocessing ##
