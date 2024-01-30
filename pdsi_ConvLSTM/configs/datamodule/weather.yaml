@@ -1,0 +1,27 @@
+_target_: src.datamodules.weather_datamodule.WeatherDataModule
+
+mode: ${mode}
+data_dir: ${data_dir}  # data_dir is specified in config.yaml
+dataset_name: ${dataset_name} 
+left_border: 0
+down_border: 0
+right_border: 350
+up_border: 350
+time_col: "date"
+event_col: "value"
+x_col: "x"
+y_col: "y"
+train_val_test_split: [0.7, 0.3, 0.3]
+periods_forward: ${periods_forward}
+history_length: ${history_length}
+data_start: 0
+data_len: 1000
+feature_to_predict: ${feature_to_predict}
+num_of_additional_features: ${num_of_additional_features}
+additional_features: ${additional_features}
+boundaries: ${boundaries}
+patch_size: 8
+normalize: True
+batch_size: ${batch_size}
+num_workers: 0
+pin_memory: False

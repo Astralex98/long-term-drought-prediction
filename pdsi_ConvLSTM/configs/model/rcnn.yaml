@@ -1,0 +1,20 @@
+_target_: src.models.rcnn_module.RCNNModule
+
+mode: ${mode} # "classification" or "regression"
+embedding_size: 16
+hidden_state_size: 32
+kernel_size: 3
+groups: 1
+dilation: 1
+n_cells_hor: 100
+n_cells_ver: 100
+history_length: ${history_length}
+periods_forward: ${periods_forward}
+batch_size: ${batch_size}
+num_of_additional_features: ${num_of_additional_features}
+num_classes: ${num_classes}
+boundaries: ${boundaries}
+values_range: 10
+dropout: 0.0
+lr: 0.05
+weight_decay: 0

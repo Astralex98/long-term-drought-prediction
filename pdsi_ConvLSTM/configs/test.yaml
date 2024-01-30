@@ -1,0 +1,74 @@
+# @package _global_
+
+# specify here default training configuration
+defaults:
+  - _self_
+  - datamodule: weather.yaml
+  - model: rcnn.yaml
+  - callbacks: null
+  - logger: null
+  - trainer: default.yaml
+  - log_dir: evaluation.yaml
+
+  # experiment configs allow for version control of specific configurations
+  # e.g. best hyperparameters for each combination of model and datamodule
+  - experiment: null
+
+  # debugging config (enable through command line, e.g. `python train.py debug=default)
+  - debug: null
+
+  # config for hyperparameter optimization
+  - hparams_search: null # optuna.yaml
+
+  # optional local config for machine/user specific settings
+  # it's optional since it doesn't need to exist and is excluded from version control
+  - optional local: default.yaml
+
+  # enable color logging
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+# path to original working directory
+# hydra hijacks working directory by changing it to the new log directory
+# https://hydra.cc/docs/next/tutorials/basic/running_your_app/working_directory
+original_work_dir: ${hydra:runtime.cwd}
+
+# path to folder with data
+data_dir: /long-term-drought-prediction/data/preprocessed/
+dataset_name: "missouri_pdsi.csv"
+batch_size: 8
+num_epochs: 100
+
+# pretty print config at the start of the run using Rich library
+print_config: True
+
+# disable python warnings if they annoy you
+ignore_warnings: True
+
+# set False to skip model training
+train: True
+
+# evaluate on test set, using best model weights achieved during training
+# lightning chooses best weights based on the metric specified in checkpoint callback
+test: True
+
+# seed for random number generators in pytorch, numpy and python.random
+seed: null
+
+# parameters of the model that are shared with dataloader
+mode: "classification" # "classification" or "regression"
+num_classes: 2 # for classifier
+boundaries: [-2] # for classifier
+feature_to_predict: "pdsi"
+num_of_additional_features: 0
+additional_features: [] #["pr", "pet", "tmmn", "tmmx"]
+
+# default name for the experiment, determines logging folder path
+# (you can overwrite this name in experiment configs)
+history_length: 9
+periods_forward: 1
+name: test_${dataset_name}_${model._target_}_history_${history_length}_forward_${periods_forward}
+
+# checkpoints
+ckpt_folder: logs/experiments/runs/test_${dataset_name}_${model._target_}_history_${history_length}_forward_${periods_forward}
+ckpt_path: null
