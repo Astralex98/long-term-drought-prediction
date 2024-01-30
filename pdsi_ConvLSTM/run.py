@@ -26,7 +26,7 @@ def main(config: DictConfig):
     utils.extras(config)
     # Evaluate model
     chkpts = []
-    os.chdir("/app")
+    os.chdir("/long-term-drought-prediction/pdsi_ConvLSTM/")
     path = config.ckpt_folder
     for ck in Path(path).rglob("*.ckpt"):
         if not "last" in str(ck):
