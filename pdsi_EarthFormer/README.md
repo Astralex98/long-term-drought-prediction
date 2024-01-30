@@ -10,7 +10,7 @@ docker build -t earthformer_image .
 - Then please launch a container with necessary system configuration 
 
 ```
-docker run -it --rm --mount type=bind,source=/local_path/long-term-drought-prediction/,destination=/long-term-drought-prediction/ --memory=64g --memory-swap=64g --cpuset-cpus=0-5 --gpus '"device=0,1"' -p 8001:8001 --gpus 1 --name "earthformer_container" earthformer_image
+docker run -it --rm --mount type=bind,source=/<local_path>/long-term-drought-prediction/,destination=/long-term-drought-prediction/ --memory=64g --memory-swap=64g --cpuset-cpus=0-5 --gpus '"device=0,1"' -p 8001:8001 --gpus 1 --name "earthformer_container" earthformer_image
 ```
 
 ## Preprocessing ##
